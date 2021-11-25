@@ -16,3 +16,7 @@ Coding question common Patterns.
 12. Top K elements
 13. K-way Merge
 14. Topological sort
+15. 0/1 Knapsack
+16. Unbounded Knapsack
+17. Fibonacci Numbers
+18. Palindromic Subsequence
