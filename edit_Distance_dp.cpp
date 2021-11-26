@@ -2,7 +2,17 @@
 #include<cstring>
 using namespace std;
 
-int min(int , int , int);
+int min(int a,int b,int c)
+    {
+        int x=INT_MAX;
+        if(a<x)
+            x=a;
+        if(b<x)
+            x=b;
+        if(c<x)
+            x=c;
+        return x;
+    }
 int editdistance(string str1, string str2, int length1, int length2)
 {
 	int L[length1+1][length2+1];
