@@ -55,3 +55,7 @@ int main()
 // the slices among his friends so that none of his friends gets sad.
 //   Note that Chef hates pizza and doesn't take any slices.
 
+
+// 1≤T≤2⋅105 
+// 1≤N,K≤109
+
