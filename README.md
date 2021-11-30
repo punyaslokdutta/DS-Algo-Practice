@@ -1,6 +1,7 @@
 # DS-Algo-Practice
 
-Coding question common Patterns.
+[Coding question common Patterns](https://seanprashad.com/leetcode-patterns/)
+
 
 1. Sliding Window
 2. Two Pointers or Iterators
@@ -23,8 +24,10 @@ Coding question common Patterns.
 
 ## Algo Visualization ##
 
-1.[Visualize DS](https://visualgo.net/en) <br/>
-2.[Visualize Algo](https://algorithm-visualizer.org/) <br/>
+1. [Visualize DS](https://visualgo.net/en) <br/>
+2. [Visualize Algo](https://algorithm-visualizer.org/) <br/>
+
+
 
 
 
