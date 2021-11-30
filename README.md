@@ -21,9 +21,12 @@ Coding question common Patterns.
 17. Fibonacci Numbers
 18. Palindromic Subsequence
 
-##Algo Visualization 
+## Algo Visualization ##
 
-[Algo Visualisizer](https://visualgo.net/en)
+[Visualize DS](https://visualgo.net/en)
+[Visualize Algo](https://algorithm-visualizer.org/)
+[Visualize Recursion] (https://recursion.vercel.app/)
+
 
 
 
