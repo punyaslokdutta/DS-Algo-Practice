@@ -23,9 +23,9 @@ Coding question common Patterns.
 
 ## Algo Visualization ##
 
-[Visualize DS](https://visualgo.net/en)
-[Visualize Algo](https://algorithm-visualizer.org/)
-[Visualize Recursion] (https://recursion.vercel.app/)
+1.[Visualize DS](https://visualgo.net/en) <br/>
+2.[Visualize Algo](https://algorithm-visualizer.org/) <br/>
+3.[Visualize Recursion] ( https://recursion.vercel.app/)
 
 
 
