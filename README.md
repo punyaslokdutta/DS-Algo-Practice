@@ -21,6 +21,9 @@
 16. Unbounded Knapsack
 17. Fibonacci Numbers
 18. Palindromic Subsequence
+19. Ad hoc/string manipulations
+20. Hash tables(checkout language-specific implementation of hashing)
+21. Array-related questions need to be practiced a lot because they need maximum logic, in my opinion. Only through practice will you learn certain intricate tricks.
 
 ## Algo Visualization ##
 
