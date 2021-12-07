@@ -38,6 +38,15 @@ Every interview prep should be divided into three stages:
 2. Start reading medium-hard questions and first solving them using a pen and paper. Trust me, don’t try to do it all in your head. It would be best if you use the pen and paper habit to tackle the intricacies of the question(I had to force myself to do this so that I would stop missing edge cases in the first attempt to finish the code quickly).Also, we can think better when we can visualize the problem, so please follow this one. Another thing to keep in mind is to analyze your performance and understand your weaknesses at the end of each day. Slowly you need to follow practices that can help you tackle those weaknesses. In this step, also make sure to bookmark concepts or questions you want to revise at the end. (5–6 days)
 3. Finally, when you get to a confident stage in all your basic data structures. Move to mock interviews, or prepare other soft skills like explaining your solution out loud or on pen and paper, or even practicing how to code in a google doc or on the whiteboard. Also, in the end, you need to revise the concepts that you marked in the previous step. (2–4 days)
 
+## REAL WORLD FEATURES  ##
+
+1. Netflix feature: Group similar titles (hashmaps)
+2. Facebook feature: Friend circles (DFS)
+3. Google Calendar feature: Find meeting rooms (Heaps)
+4. Amazon feature: Products in price range (BST)
+5. Twitter feature: Add likes (Strings)
+
+
 
 
 
