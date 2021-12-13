@@ -1,44 +1,62 @@
 class Solution {
 public:
     vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
+    
         if(n==0)
             return {};
         if(n==1)
             return {0};
-        vector<int>res;
-        vector<int>degrees(n,0);
-        vector<vector<int>>adj(n);
+
+        vector<vector<int>> adjList(n);
+        vector<int> inDegree(n, 0);
         for(int i=0;i<edges.size();i++)
         {
-            adj[edges[i][0]].push_back(edges[i][1]);//creating adjacent list
-            adj[edges[i][1]].push_back(edges[i][0]);
-            degrees[edges[i][1]]++;//updating how many edges each node has
-            degrees[edges[i][0]]++;
+            int a=edges[i][0];
+            int b=edges[i][1];
+            adjList[b].push_back(a);
+            adjList[a].push_back(b);
+            inDegree[a]++;
+            inDegree[b]++;
         }
-        queue<int>queue;
+        
+        //MAKE THE ADJACENCY LIST AND UPDATE INDEGREES
+        queue<int>q;
+        vector<int>res;
+        
         for(int i=0;i<n;i++)
         {
-            if(degrees[i]==1)//adding all the leave nodes
-                queue.push(i);
+           if(inDegree[i]==1)
+           {
+               q.push(i);
+           }
         }
-        while(!queue.empty())
+        //FIND THE INDEGREE 1 NODES WHICH ARE THE LEAFS
+        //ELIMINIATE AND DECREASE THE INDEGREES OF THE PARENTS OF THE OUTER NODES
+        //KEEP ELIMINIATING AND FIND THE ANSWER LEVEL 
+        //WHICH WILL BE THE LAST LEVEL WHERE 1 OR 2 NODES ARE PRESENT AT THE MIDDLE
+        while(!q.empty())
         {
-            res.clear();// clear vector before we start traversing level by level.
-            int size=queue.size();
+            res.clear(); //AT EACH LEVEL THE CLEAR THE ANS BEFORE GOING TO THE NEXT LEVEL
+            int size=q.size(); 
             for(int i=0;i<size;i++)
             {
-                int cur=queue.front();
-                queue.pop();
-                res.push_back(cur);//adding nodes to vector.Goal is to get a vector of  just 1 or 2 nodes available.
-                for(auto &neighbor:adj[cur])
+                
+                int front=q.front();
+                res.push_back(front);
+                q.pop();
+                for(auto v: adjList[front])
                 {
-                    degrees[neighbor]--;//removing current leave nodes
-                    if(degrees[neighbor]==1)//adding current leave nodes
-                        queue.push(neighbor);
+                    if(--inDegree[v]==1)
+                    {
+                        q.push(v);
+                    }
                 }
             }
         }
-        return res;
+        
+        
+       return res; 
+       
     }
 };
 
