@@ -2,6 +2,7 @@
 //TOPOLOGICAL SORT TO FIND CYCLE
 //(a, b)-> To complete A , you need to complete B. 
 //B--> A , cause B is a depencency of A.
+//INDEGREE 0 MEANS NO OTHER COURSE IS DEPENDENT ON THEM AND THEY CAN COMPLETE THEMSELVES
 
 class Solution {
 public:
