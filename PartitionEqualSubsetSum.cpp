@@ -99,14 +99,13 @@ public:
 
 
 
-   //TAKE 2D MAP map<pair<index, sum>, bool> //FOR NEGATIVE NUMBERS
-//     vector<vector<int>> mem;
+//    vector<vector<int>> mem;
 //     bool subSetSum(vector<int>& nums, int n ,int index, int sum)
 //     {
 //         //BASE CONDITION
 //         if(sum==0)
 //             return true;
-//         if(index>=n || sum<0)  //ONE CONDITION TO REMEMBER IS SUM IS INDEX , SO IT CAN'T BE LESS                                  //THAN ZERO
+//         if(index>=n || sum<0)
 //             return false;
 //         if(mem[index][sum]!=-1)
 //             return mem[index][sum];
@@ -114,3 +113,20 @@ public:
 //         return mem[index][sum]=subSetSum(nums, n, index+1, sum-nums[index]) || subSetSum(nums, n, index+1, sum);
 //     }
     
+    
+//     //SUM IS NEGATIVE WHEN THERE ARE 
+//     bool canPartition(vector<int>& nums) {
+//         int sum=0;
+//         int n=nums.size();
+//         mem.clear();
+        
+//         for(auto i: nums)
+//             sum+=i;
+//         mem.resize(n+1, vector<int>(sum/2+1, -1));
+//         if(sum & 1)
+//             return false;
+//         return subSetSum(nums,n,0, sum/2 );
+//             //{index, subsetSum}
+        
+//     }
+// };
