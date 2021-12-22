@@ -2,6 +2,7 @@
 //2, 2, 2, 2, 5, 5, 5, 8
 //2, 4, 6, 8, 13, 18, 23, 31
 //SUM+ = ARR[I]-ARR[I-K]
+//SLIDING WINDOW
 class Solution {
 public:
     int numOfSubarrays(vector<int>& arr, int k, int threshold) {
