@@ -35,3 +35,50 @@ public:
         
     }
 };
+
+
+// ITERATIVE  (100% FASTER)
+// class Solution {
+// public:
+   
+//     bool search(vector<int>& nums, int target) {
+//         int h=nums.size()-1;
+//         int l=0;
+//         while(l<=h)
+//         {
+//             int m=l + (h-l)/2;
+//             if(nums[m]==target)
+//                 return true;
+//             if(nums[m]==nums[l] && nums[l]==nums[h])
+//             {
+//                 l++;
+//                 h--;
+//                 continue;
+//             }
+//             //IF LEFT PART IS SORTED
+//             if(nums[m]>=nums[l])
+//             {
+//                 if(nums[m]>=target && target >= nums[l])
+//                 {
+//                   h=m-1;
+//                 }
+//                 else{
+//                    l=m+1;
+//                 }
+//             }
+//             //RIGHT PART IS SORTED 
+//             else
+//             {
+//                 if(nums[h]>=target && target >=nums[m])
+//                 {
+//                   l=m+1;
+//                 }
+//                 else{
+//                    h=m-1;
+//                 }
+//             }
+//         }
+//         return false;
+        
+//     }
+// };
