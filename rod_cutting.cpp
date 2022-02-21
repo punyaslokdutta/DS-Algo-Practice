@@ -1,22 +1,26 @@
 
+// ROD CUTTING PROBLEM 
 
-int maxCost(int index, int N ,vector<int> &price, vector<vector<int>> &dp)
+// A length N rod can be cut at unit steps example , n pieces , 3 pieces each of n/3 , n/3 and n%3.
+// Find the maximum profit to sell the rod into pieces (prices[n]={1, 3, 4, 6, 7, 12, 14, 25})
+
+int maxCost(int index, int remainLen ,vector<int> &price, vector<vector<int>> &dp)
 {
     if(index==0)
-        return N*price[0];
+        return remainLen*price[0];
 //     if(N<=0)
 //         return INT_MIN;
-    if(dp[index][N]!=-1)
-        return dp[index][N];
+    if(dp[index][remainLen]!=-1)
+        return dp[index][remainLen];
     int take = INT_MIN;
-    int not_take = 0 + maxCost(index-1, N, price, dp);
+    int not_take = 0 + maxCost(index-1, remainLen, price, dp);
     int rodLength= index+1;
-    if(rodLength<=N)
+    if(rodLength<=remainLen)
     {
-    take = price[index] + maxCost(index, N-rodLength, price, dp);
+    take = price[index] + maxCost(index, remainLen-rodLength, price, dp);
     }
-    dp[index][N]= max(take, not_take);
-    return dp[index][N];
+    dp[index][remainLen]= max(take, not_take);
+    return dp[index][remainLen];
 }
 int cutRod(vector<int> &price, int n)
 {
