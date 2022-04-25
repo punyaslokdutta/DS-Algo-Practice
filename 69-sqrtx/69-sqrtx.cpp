@@ -4,10 +4,11 @@
 class Solution {
 public:
     int mySqrt(int x) {
-    long r = x;
-    while (r*r > x)
-        r = (r + x/r) / 2;
-    return r;
-        
+        long s = x;
+        while(s*s > x)
+        {
+            s = (s + x/s)/2;
+        }
+        return s;
     }
 };
