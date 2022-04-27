@@ -88,25 +88,17 @@ struct Node
 complete this function */
 class Solution
 {
-    
-    
     public:
     
     bool hasPathSum(Node *root, int S) {
     // Your code here
-    if(root == NULL)
-        {
-            return false;
-        }
-        if(root->left == NULL && root->right == NULL && root->data - S == 0)
-        {
-            return true;
-        }
-        
-        bool left = hasPathSum(root->left,S - root->data);
-        bool right = hasPathSum(root->right,S - root->data);
-        
-        return left || right;
+    if(!root)
+        return false;
+    if(root->left == NULL && root->right == NULL && S - root->data ==0)
+        return true;
+    S= S-root->data;
+    return hasPathSum(root->left, S) || hasPathSum(root->right, S);
+    
 }
 };
 
