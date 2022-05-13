@@ -31,14 +31,16 @@ public:
                 Node* f = q.front();
                 q.pop();
                 
-                if(sz==0)
-                    f->next= NULL;
-                else
-                    f->next = q.front();
+               
                 if(f->left)
                     q.push(f->left);
                 if(f->right)
                     q.push(f->right);
+                
+                 if(sz==0)
+                    f->next= NULL;
+                else
+                    f->next = q.front();
             }
             //level is exhausted
             
