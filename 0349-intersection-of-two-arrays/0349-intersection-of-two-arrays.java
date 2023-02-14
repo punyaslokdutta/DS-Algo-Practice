@@ -12,12 +12,6 @@ class Solution {
                 st.remove(nums2[i]);
             }       
         }
-        int[] ans = new int[res.size()];
-        for(int j=0;j<res.size();j++)
-        {
-            ans[j] = res.get(j);
-        }
-        return ans; 
-        
+        return  res.stream().mapToInt(number -> number).toArray();
     }
 }
