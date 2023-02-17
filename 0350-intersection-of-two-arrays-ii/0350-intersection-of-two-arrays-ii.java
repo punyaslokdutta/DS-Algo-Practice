@@ -9,7 +9,7 @@ class Solution {
         
         for(int n : nums2)
         {
-            if(mp.containsKey(n) && mp.get(n) > 0)
+            if(mp.getOrDefault(n, 0) > 0)
             {
                 l.add(n);
                 mp.put(n, mp.get(n) -1);
