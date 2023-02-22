@@ -1,43 +1,36 @@
-class Solution {
-    public boolean wordBreak(String s, List<String> wordDict) {
-	// for memoization
-        HashMap<String,Boolean> map= new HashMap<>();
-        return canConstruct(s, wordDict, map);
-    }
-    
-    public boolean canConstruct(String target,List<String> words, HashMap<String,Boolean> map)
-    {
-	
-	// if answer already cached, return it
-        if(map.containsKey(target))
-            return map.get(target);
-			
-		// if target string is empty
-		// it can always be constructed by taking no elements from dictionary
-        if(target.isEmpty())
-            return true;
-			
-		// for all words in the dictionary
-        for(String word: words)
-        {
-		// if the target starts with the given word
-            if(target.startsWith(word))
-            {
-			// and it is possible to construct the rest of the string
-			// from the words in the dictionary
-                if(canConstruct(target.substring(word.length()),words, map))
-                {
-				
-				// save and return true
-                    map.put(target, true);
-                    return true;
-                }
+public class Solution {
+    private TrieNode root = new TrieNode();
+    public boolean wordBreak(String str, List<String> wordDict) {
+        for (String word : wordDict)
+            addToTrie(word);
+        boolean[] dp = new boolean[str.length() + 1];
+        char[] s = str.toCharArray();
+        dp[0] = true;
+        for (int i = 0; i < s.length; i++) {
+            if (!dp[i])
+                continue;
+            int j = i; // start trie traversal
+            TrieNode cur = root;
+            while (j < s.length && cur.children[s[j] - 'a'] != null) {
+                cur = cur.children[s[j++] - 'a'];
+                if (cur.isWord)
+                    dp[j] = true;
             }
         }
-		
-		// if it was not possible to construct the target from words from the dictionary
-		// save and return false to the previous call
-        map.put(target,false);
-        return false;
+        return dp[str.length()];
+    }
+
+    private void addToTrie(String word) {
+        TrieNode cur = root;
+        for (char ch : word.toCharArray()) {
+            if (cur.children[ch - 'a'] == null)
+                cur.children[ch - 'a'] = new TrieNode();
+            cur = cur.children[ch - 'a'];
+        }
+        cur.isWord = true;
+    }
+    class TrieNode {
+        public boolean isWord;
+        public TrieNode[] children = new TrieNode[26];
     }
 }
