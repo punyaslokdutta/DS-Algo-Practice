@@ -9,7 +9,7 @@ class Solution {
             if(!mp.containsKey(pattern.charAt(i)))
                {
                    if(mp.containsValue(words[i]))
-                       return false;
+                       return false; //if it's mapped already to another string
                    mp.put(pattern.charAt(i), words[i]); // mapped
                }
               else
