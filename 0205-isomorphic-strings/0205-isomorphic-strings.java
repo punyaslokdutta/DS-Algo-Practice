@@ -21,8 +21,6 @@ class Solution {
             {
                 if(mp.get(s.charAt(i))!= t.charAt(i))
                     return false;
-                else
-                    continue;
             }
         } 
         return true;
