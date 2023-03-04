@@ -1,14 +1,14 @@
 class Solution {
     public int[] runningSum(int[] nums) {
-        List<Integer> ans = new ArrayList<>();
+        int ans[] = new int[nums.length];
         int preSum = 0;
-        for(int n : nums)
+        for(int i=0;i<nums.length;i++)
         {
-            preSum+=n;
-            ans.add(preSum);
+            preSum+=nums[i];
+            ans[i] = preSum;
         }
         
-        return ans.stream().mapToInt(i->i).toArray();
+        return ans;
         
     }
 }
