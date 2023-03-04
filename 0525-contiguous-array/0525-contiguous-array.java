@@ -1,6 +1,7 @@
 
 
 //mp[0: index] -> int[] [0]-> number of 0's [1]-> number of 1's
+//[-1, -1, -1, 1, 1, 1, 1, -1, -1]
 
 class Solution {
     public int findMaxLength(int[] nums) {
@@ -14,7 +15,7 @@ class Solution {
         int sum = 0; // current
         int max = 0; // final-ans
         Map<Integer, Integer> map = new HashMap<>();
-        map.put(0, -1); // put reference in the starting of 0 & -1, as i have tell you in the starting  
+        map.put(0, -1);  
         for(int i = 0; i < nums.length; i++){
             sum += nums[i]; // cumulative sum
             if(map.containsKey(sum)){ // if cumulative sum key :- 0, -1, 1 already present
