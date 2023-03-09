@@ -14,30 +14,31 @@
  * }
  */
 class Solution {
-    int maxCount = 0;
+    int maxFreq = 0;
     Map<Integer, Integer> mp;
     public int[] findFrequentTreeSum(TreeNode root) {
-        mp  = new HashMap<>();
-        dfs(root);
-        
+        mp = new HashMap<>();
         List<Integer> res = new ArrayList<>();
+        dfs(root);
+        //traverse the map
         for(int x : mp.keySet())
         {
-            if(mp.get(x) == maxCount)
+            if(mp.get(x) == maxFreq)
                 res.add(x);
         }
-        
-        return res.stream().mapToInt(Integer -> Integer).toArray();   
+
+        return res.stream().mapToInt(i-> i).toArray();
     }
     
-     private int dfs(TreeNode root)
+    private int dfs(TreeNode root)
     {
-        if(root == null)
+        if(root == null )
             return 0;
-        int sumSubTree = dfs(root.left) + dfs(root.right) + root.val;
-        mp.put(sumSubTree, mp.getOrDefault(sumSubTree, 0)+1);
-        maxCount = Math.max(maxCount, mp.get(sumSubTree)); 
-        return sumSubTree;
+        int subTreeSum = dfs(root.left) + dfs(root.right) + root.val;
+        mp.put(subTreeSum, mp.getOrDefault(subTreeSum, 0) + 1);
+        maxFreq = Math.max(maxFreq, mp.get(subTreeSum) );
+        return subTreeSum;
     }
+
    
 }
