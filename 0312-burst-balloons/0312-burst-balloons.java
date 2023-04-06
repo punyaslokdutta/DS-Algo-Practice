@@ -22,6 +22,9 @@ class Solution {
         if(dp[left][right] > 0)
             return dp[left][right];
         int ans = 0;
+        // ith ballon is burst last
+        // points gained when bursting the ith ballon last 
+        // = arr[i] * arr[left] * arr[right] + the two recursive subparts
         for(int i = left + 1 ; i<right;i++)
         {
             ans = Math.max(ans, arr[i]*arr[left]*arr[right] + 
