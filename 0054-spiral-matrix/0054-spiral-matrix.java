@@ -14,16 +14,23 @@ public class Solution {
         
         while (rowBegin <= rowEnd && colBegin <= colEnd) {
             // Traverse Right
-            for (int j = colBegin; j <= colEnd; j ++) {
-                res.add(matrix[rowBegin][j]);
-            }
-            rowBegin++;
             
-            // Traverse Down
-            for (int j = rowBegin; j <= rowEnd; j ++) {
-                res.add(matrix[j][colEnd]);
+            if(rowBegin <=rowEnd)
+            {
+                for (int j = colBegin; j <= colEnd; j ++) {
+                    res.add(matrix[rowBegin][j]);
+                }
+                rowBegin++;
             }
-            colEnd--;
+            if(colBegin <= colEnd)
+            {
+                // Traverse Down
+                for (int j = rowBegin; j <= rowEnd; j ++) {
+                    res.add(matrix[j][colEnd]);
+                }
+                colEnd--;
+            }
+            
             
             if (rowBegin <= rowEnd) {
                 // Traverse Left
