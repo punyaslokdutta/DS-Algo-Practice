@@ -26,13 +26,14 @@ class Solution {
             for(int i= 0;i<size;i++)
             {
                 TreeNode f = q.poll();
+                if(i == size -1)
+                    ans.add(f.val);
                 
                 if(f.left != null)
                     q.offer(f.left);
                 if(f.right != null)
                     q.offer(f.right);
-                if(i == size -1)
-                    ans.add(f.val);
+                
             }
             
         }
