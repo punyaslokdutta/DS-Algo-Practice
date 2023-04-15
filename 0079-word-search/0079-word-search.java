@@ -1,5 +1,5 @@
 public class Solution {
-    static boolean[][] visited;
+    boolean[][] visited;
     public boolean exist(char[][] board, String word) {
         visited = new boolean[board.length][board[0].length];
         
