@@ -29,8 +29,7 @@ class Solution {
         boolean ans = solve(head, root);
         if(root!= null && !ans)
         {
-            ans |= isSubPath(head, root.left);
-            ans |= isSubPath(head, root.right);
+            ans  = ans || isSubPath(head, root.left) || isSubPath(head, root.right);
         }
         return ans;
         
