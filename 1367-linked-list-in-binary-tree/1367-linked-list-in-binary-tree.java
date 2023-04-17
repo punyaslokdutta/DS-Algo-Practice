@@ -40,7 +40,7 @@ class Solution {
     {
         if(head == null)
             return true;
-        if(root == null)
+        if(root == null && head!= null)
             return false;
         if(head.val == root.val)
             return solve(head.next, root.left)  || solve(head.next, root.right);
