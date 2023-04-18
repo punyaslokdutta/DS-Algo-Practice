@@ -25,25 +25,28 @@
  */
 class Solution {
     public boolean isSubPath(ListNode head, TreeNode root) {
-        
-        boolean ans = solve(head, root);
-        if(root!= null && !ans)
+        boolean ans = false;
+        ans = subPathHelper(head, root);
+        if(ans!=true && root!= null)
         {
-            ans  = ans || isSubPath(head, root.left) || isSubPath(head, root.right);
+            ans |= isSubPath(head, root.left);
+            ans |= isSubPath(head , root.right);
         }
         return ans;
-        
     }
     
-    private boolean solve(ListNode head , TreeNode root)
+    private boolean subPathHelper(ListNode head , TreeNode root)
     {
-        if(head == null)
-            return true;
         if(root == null && head!= null)
             return false;
-        if(head.val == root.val)
-            return solve(head.next, root.left)  || solve(head.next, root.right);
+        if(head == null)
+            return true;
+        
+        if(root.val == head.val)
+            return subPathHelper(head.next, root.left) ||
+                      subPathHelper(head.next, root.right);
         return false;
         
     }
+    
 }
