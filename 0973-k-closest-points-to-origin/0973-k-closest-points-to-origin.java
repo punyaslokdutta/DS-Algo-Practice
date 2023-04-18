@@ -13,7 +13,7 @@ class Solution {
         
     }
     
-    static class MaxHeapComparator implements Comparator<int []>
+     private static class MaxHeapComparator implements Comparator<int []>
     {
         public int compare(int a[] , int b[])
     	{
