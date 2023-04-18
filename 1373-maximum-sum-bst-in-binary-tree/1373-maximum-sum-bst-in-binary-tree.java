@@ -13,38 +13,31 @@
  *     }
  * }
  */
+// [isBST, smallest , largest, maxSum]
 class Solution {
-    int max;
+    int maxSum;
     public int maxSumBST(TreeNode root) {
-        max = 0;
-        findMax(root);
-        return max;
+        maxSum = 0;
+        int[] temp = solve(root);
+        return maxSum;
     }
     
-    private int [] findMax(TreeNode root)
+    private int [] solve(TreeNode root)
     {
-        if(root == null)
-            return new int[]{1, Integer.MIN_VALUE, Integer.MAX_VALUE, 0};
-        
-        int [] left = findMax(root.left);
-        int [] right = findMax(root.right);
-        int sum =0;
-        boolean isBst = false;
-        if(left[0]==1 &&
-           right[0] == 1 && 
-           root.val > left[1] && 
-           root.val < right[2])
-            isBst = true;
-        sum = root.val + left[3] + right[3];
-        if(isBst == true)
+        if(root == null )
+            return new int[]{1, Integer.MAX_VALUE, Integer.MIN_VALUE, 0};
+        boolean isBST = false;
+        int left[] = solve(root.left);
+        int right[] = solve(root.right);
+        if(left[0] == 1 &&  right[0] == 1)
         {
-            max = Math.max(max, sum);
-            
+            if(root.val > left[2] && root.val < right[1])
+            {
+                maxSum = Math.max(maxSum, left[3] + right[3] + root.val);
+                isBST = true;
+            }
         }
-        
-        return new int[]{isBst?1:0, Math.max(root.val, right[1]),
-                             Math.min(root.val, left[2]), sum};
-        
+        return new int[]{isBST?1:0 , Math.min(root.val, left[1]), Math.max(root.val, right[2]), left[3] + right[3] + root.val};
         
     }
 }
