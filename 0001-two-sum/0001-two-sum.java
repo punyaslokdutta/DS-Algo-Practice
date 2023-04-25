@@ -1,16 +1,18 @@
 class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        Map<Integer, Integer> mp = new HashMap<>();
-        for(int i = 0;i<nums.length;i++)
-        {
-            if(mp.containsKey(target - nums[i]))
-            {
-                return new int[]{i, mp.get(target-nums[i])};
-            }
-            mp.put(nums[i], i);
-        }
-        throw new IllegalArgumentException("No two sum solution");
-    }
+    public int[] twoSum(int nums[] , int target)
+{
+	Map<Integer, Integer> mp = new HashMap<>();
+	for(int i=0;i<nums.length;i++)
+	{
+		int x = nums[i];
+		if(mp.containsKey(target - nums[i]))
+		{
+			return new int[]{i, mp.get(target- nums[i])};
+		}
+		mp.put(x,i);
+	}
+	return new  int[]{};
+}
 }
 
 // Java HashMap class implements the Map interface which allows us to store key and value pair, where keys should be unique. If you try to insert the duplicate key, it will replace the element of the corresponding key. It is easy to perform operations using the key index like updation, deletion, etc. HashMap class is found in the java.util package.
