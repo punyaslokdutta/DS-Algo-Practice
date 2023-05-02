@@ -1,36 +1,37 @@
 class MedianFinder {
-
+    boolean even;
+    PriorityQueue<Integer> smallHeap; //maxHeap
+    PriorityQueue<Integer> largeHeap; //minHeap
     public MedianFinder() {
-        
+        smallHeap = new PriorityQueue<>(Collections.reverseOrder());
+        largeHeap = new PriorityQueue<>();
+        even = true; //starts with '0'
     }
-    PriorityQueue<Integer> smallHeap = new PriorityQueue<>(Collections.reverseOrder());
-    PriorityQueue<Integer> largeHeap = new PriorityQueue<>();
-    boolean even = true;
+    
     public void addNum(int num) {
-    		if(even)
-    		{
-    			largeHeap.offer(num);
-    			smallHeap.offer(largeHeap.poll());
-    		}
-    		else
-    		{
-    			smallHeap.offer(num);
-    			largeHeap.offer(smallHeap.poll());
-    		}
-    		even = !even;
-        
+        if(even)
+        {
+            largeHeap.offer(num);
+            smallHeap.offer(largeHeap.poll());
+        }
+        else
+        {
+            smallHeap.offer(num);
+            largeHeap.offer(smallHeap.poll());
+        }
+        even =!even;
     }
     
     public double findMedian() {
-    	if(even)
-    	{
-    		return (smallHeap.peek() + largeHeap.peek())/2.0;
-    	}
-    	else
-    		return smallHeap.peek();
-        
+        if(even)
+        {
+            return (largeHeap.peek() + smallHeap.peek())/2.00; 
+        }
+        else
+            return smallHeap.peek();
     }
 }
+
 /**
  * Your MedianFinder object will be instantiated and called as such:
  * MedianFinder obj = new MedianFinder();
