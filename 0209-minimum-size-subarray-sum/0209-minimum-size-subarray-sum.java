@@ -6,14 +6,17 @@ class Solution {
   int i = 0, j = 0, sum = 0, min = Integer.MAX_VALUE;
   
   while (j < a.length) {
-    sum += a[j++];
+    sum += a[j];
     
-    while (sum >= s) {
-      min = Math.min(min, j - i);
+    while (sum >=s) {
+      min = Math.min(min, j - i +1);
       sum -= a[i++];
     }
+      j++;
   }
   
   return min == Integer.MAX_VALUE ? 0 : min;
 }
 }
+
+
