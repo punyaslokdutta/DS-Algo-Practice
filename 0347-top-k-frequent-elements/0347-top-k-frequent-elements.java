@@ -7,6 +7,7 @@ class Solution {
         new PriorityQueue<>(
     (a, b) -> a.getValue() - b.getValue()
     );
+    //minHeap
     for(Map.Entry<Integer, Integer> x : mp.entrySet())
     {
         pq.add(x);
@@ -21,7 +22,7 @@ class Solution {
         ans.add(top.getKey());
     }
     
-    return ans.stream().mapToInt(Integer -> Integer).toArray();
+    return ans.stream().mapToInt(Int -> Int).toArray();
         
     }
 }
