@@ -20,7 +20,7 @@ class Solution {
         int count =0;
         while(!pq.isEmpty())
         {
-            ans[count++] = pq.poll().getKey();
+            ans[count++] = pq.poll().getKey().intValue();
         }
         return ans; 
     }
