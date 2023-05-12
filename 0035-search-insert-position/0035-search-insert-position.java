@@ -1,3 +1,8 @@
+
+// l, r : [, n-1]
+//ans : [0, n]
+//in BS questions, to avoid edge cases, dry run with 1, 2,3 elems
+
 class Solution {
     public int searchInsert(int[] nums, int target) {
         int high = nums.length - 1;
