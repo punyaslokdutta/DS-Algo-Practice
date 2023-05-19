@@ -1,16 +1,16 @@
 class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
-    	int tail1 = m-1;
-        int tail2 = n-1;
-        int last = m+n-1;
-        while(tail1 >= 0 && tail2 >=0)
+        int t1 = m-1;
+        int t2 = n-1;
+        int t = m+n -1;
+        while(t1>=0 && t2>=0)
         {
-            nums1[last--] = (nums1[tail1] < nums2[tail2])?nums2[tail2--] : nums1[tail1--];
+            nums1[t--] = (nums1[t1]>nums2[t2])?nums1[t1--]: nums2[t2--];
         }
-        
-        while(tail2>=0)
+
+        while(t2>=0)
         {
-            nums1[last--] = nums2[tail2--];
+            nums1[t--] = nums2[t2--];
         }
-    }
+}
 }
