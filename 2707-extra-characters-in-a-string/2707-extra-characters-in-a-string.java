@@ -29,9 +29,8 @@ class Solution {
                // add to the matched string
                l = minExtraChar2(s.substring(word.length(), s.length()), dictionary, start+word.length(), dp); 
             }
-            else{
              r = minExtraChar2(s.substring(1,s.length()), dictionary, start+1, dp) + 1;
-            }
+
             ans = Math.min(ans, Math.min(l, r));
         
         }
