@@ -32,7 +32,7 @@ class Solution {
                     
                 }
             }
-            ++ans;  
+            ans++;  
         }
         
         
