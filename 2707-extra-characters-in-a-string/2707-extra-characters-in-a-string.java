@@ -1,49 +1,24 @@
 class Solution {
-    int n;
-    public int minExtraChar(String s, String[] dictionary) {
-        n = s.length();
-
-        int dp[] = new int[s.length()];
-
-        Arrays.fill(dp,-1);
-
-        int kc= minExtraChar2(s, dictionary, 0 , dp);
-
-        return kc;
-    }
-
-
-
-    public int minExtraChar2(String s, String[] dictionary, int start, int dp[]) {
-        // base
-        if(s.length() == 0) return 0;
-        if(dp[start] != -1) return dp[start];
-        int ans = Integer.MAX_VALUE;
-        int l = Integer.MAX_VALUE; int r = Integer.MAX_VALUE;
-        
-        boolean foind = false;
-        for(String word : dictionary) {
-
-            
-            if(s.startsWith(word)) {
-               // add to the matched string
-               l = minExtraChar2(s.substring(word.length(), s.length()), dictionary, start+word.length(), dp); 
+    Set<String> st;
+    int dp[];
+    int helper(String s,int idx){
+        if(idx >= s.length()) return 0;
+        if(dp[idx] != -1) return dp[idx];
+        int ans = 1 + helper(s,idx + 1);
+        StringBuilder sb = new StringBuilder();
+        for(int i = idx;i < s.length();i++){
+            sb.append(s.charAt(i));
+            if(st.contains(sb.toString())){
+                ans = Math.min(ans,helper(s,i + 1));
             }
-             r = minExtraChar2(s.substring(1,s.length()), dictionary, start+1, dp) + 1;
-
-            ans = Math.min(ans, Math.min(l, r));
-        
         }
-        
-
-       
-        dp[start] = ans;
-
-        return ans;
-
-        
+        return dp[idx] = ans;
     }
-
-
-
+    public int minExtraChar(String s, String[] dictionary) {
+        st = new HashSet<>();
+        dp = new int[s.length()];
+        Arrays.fill(dp,-1);
+        for(var d:dictionary) st.add(d);
+        return helper(s,0);
+    }
 }
