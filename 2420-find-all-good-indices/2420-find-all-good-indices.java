@@ -21,3 +21,6 @@ class Solution {
         
     }
 }
+
+
+//dp[i] = number of non increasing sequence just before ith index
