@@ -14,6 +14,7 @@ class Solution {
             for(int i=0;i<size;i++)
             {
                 String curr = q.poll();
+                vis.add(curr);
                 if(curr.equals(endWord)) return ans;
                 
                 for(int k=0;k<curr.length();k++)
@@ -23,11 +24,10 @@ class Solution {
                     {
                         ch[k] = (char)l;
                         String ss = new String(ch);
-                    if(st.contains(ss) && !vis.contains(ss))
-                    {
-                        q.add(ss);
-                        vis.add(ss);
-                    }
+                                if(st.contains(ss) && !vis.contains(ss))
+                                {
+                                    q.add(ss);
+                                }
                     }
                     
                 }
