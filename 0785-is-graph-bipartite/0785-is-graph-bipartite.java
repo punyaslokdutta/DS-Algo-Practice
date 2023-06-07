@@ -1,19 +1,19 @@
 class Solution {
     static int []color;
     static boolean isBi;
-    private void dfs(int node, int colorVal, int[][] graph)
+    private void dfs(int node, int[][] graph)
     {
         for(int v: graph[node])
         {
             if(color[v] == 0)
             {
-               color[v] = -colorVal;
-               dfs(v, -colorVal, graph);   
+               color[v] = -color[node];
+               dfs(v, graph);   
             }
-            else if(color[v] == colorVal)
+            else if(color[v] == color[node])
             {
                 isBi = !(color[node] == color[v]);
-
+                return;
             }
             
         }
@@ -29,7 +29,7 @@ class Solution {
             if((color[i] == 0))
             {
                 color[i] = 1;
-                dfs(i, color[i], graph); 
+                dfs(i, graph); 
             }
         }
         return isBi;
