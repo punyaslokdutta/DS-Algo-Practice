@@ -12,7 +12,7 @@ class Solution {
             }
             else if(color[v] == colorVal)
             {
-                isBi = false;
+                isBi = !(color[node] == color[v]);
                 return;
             }
             
