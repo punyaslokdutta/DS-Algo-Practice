@@ -10,7 +10,7 @@ class Solution {
                color[v] = -colorVal;
                dfs(v, -colorVal, graph);   
             }
-            else if(color[v] !=0 && color[v] == colorVal)
+            else if(color[v] == colorVal)
             {
                 isBi = false;
                 return;
