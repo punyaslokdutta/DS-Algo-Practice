@@ -1,27 +1,59 @@
 class Solution {
-    
     public List<String> wordBreak(String s, List<String> wordDict) {
-    return DFS(s, wordDict, new HashMap<String, LinkedList<String>>());
-}       
-
-
-List<String> DFS(String s, List<String> wordDict, HashMap<String, LinkedList<String>>map) {
-    if (map.containsKey(s)) 
-        return map.get(s);
-        
-    LinkedList<String>res = new LinkedList<String>();     
-    if (s.length() == 0) {
-        res.add("");
-        return res;
-    }               
-    for (String word : wordDict) {
-        if (s.startsWith(word)) {
-            List<String>sublist = DFS(s.substring(word.length()), wordDict, map);
-            for (String sub : sublist) 
-                res.add(word + (sub.isEmpty() ? "" : " ") + sub);               
+        Map<String, List<String>> mp = new HashMap<>();
+        return dfs(s, wordDict, mp);
+    }
+    
+    
+    List<String> dfs(String target , List<String> words , Map<String, List<String>> mp)
+    {
+        List<String> res = new ArrayList<>();
+        if(mp.containsKey(target))
+        {
+            return mp.get(target);
         }
-    }       
-    map.put(s, res);
-    return res;
+        if(target.length() == 0)
+        {
+            res.add("");
+            return res;
+        }
+        
+        for(String word : words){
+            if(target.startsWith(word))
+            {
+                List<String> subSents = dfs(target.substring(word.length()),words, mp);
+                for(String subSent :subSents)
+                {
+                   if(subSent.length() == 0)
+                   {
+                       res.add(word  + subSent);
+                   }
+                    else{
+                        res.add(word + " " + subSent);
+                    }
+                }
+            }
+        }
+        
+        
+        mp.put(target, res);
+        return res;
+    }
 }
-}
+
+
+
+
+
+
+
+
+
+
+// cats and dog , ["cat", "cats", "and", "sand", "dog"]
+// //How many sentences can be formed so that each word is in words
+
+//next step -> number of sentences if you can't resuse the words again
+
+
+
