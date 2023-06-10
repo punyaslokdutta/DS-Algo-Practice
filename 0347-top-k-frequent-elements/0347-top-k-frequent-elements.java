@@ -17,11 +17,11 @@ class Solution {
                 pq.poll();
             }
         }
-        int count =0;
+        List<Integer> ans2 = new ArrayList<>();
         while(!pq.isEmpty())
         {
-            ans[count++] = pq.poll().getKey().intValue();
+            ans2.add(pq.poll().getKey());
         }
-        return ans; 
+        return ans2.stream().mapToInt(Int -> Int).toArray();
     }
 }
