@@ -5,6 +5,7 @@ class Solution {
         if(s.length() == 0 )  return 0;
         if(mp.containsKey(s)) return mp.get(s);
         int ans =s.length() + 1;
+        int n = s.length();
         for(String word : st)
         {
             if(s.startsWith(word))
@@ -12,7 +13,7 @@ class Solution {
                 ans = Math.min(ans, helper(s.substring(word.length())));
             }
         }
-        ans = Math.min(ans, 1 + helper(s.substring(1)));
+        ans = Math.min(ans, 1 + helper(s.substring(1,n)));
         
         mp.put(s, ans);
         return ans;
