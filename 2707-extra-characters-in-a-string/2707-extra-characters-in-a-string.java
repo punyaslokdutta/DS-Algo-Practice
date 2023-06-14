@@ -1,5 +1,5 @@
 class Solution {
-    Set<String> st;
+    List<String> st;
     Map<String, Integer> mp;
     int helper(String s){
         if(s.length() == 0 )  return 0;
@@ -18,7 +18,7 @@ class Solution {
         return ans;
     }
     public int minExtraChar(String s, String[] dictionary) {
-        st = new HashSet<>();
+        st = new ArrayList<>();
         mp = new HashMap<>();
         for(var d:dictionary) st.add(d);
         return helper(s);
