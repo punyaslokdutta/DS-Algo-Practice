@@ -1,50 +1,30 @@
 class Solution {
     public List<Integer> findAnagrams(String s, String p) {
-        int[] hmap = new int[26];
-        for (char ch : p.toCharArray()) {
-            hmap[ch - 'a']++;
+        List<Integer> ans = new ArrayList<>();
+        if (p.length() > s.length()) {
+            return ans;
         }
-        int start = 0;
-        int end = 0;
-        int count = p.length();
-        List<Integer> res = new ArrayList<>();
-        
-        while (end < s.length()) {
-            if (hmap[s.charAt(end) - 'a'] > 0) {
-                hmap[s.charAt(end) - 'a']--;
-                count--;
-                end++;
-            } else {
-                hmap[s.charAt(start) - 'a']++;
-                count++;
-                start++;
-            }
-            
-            if (count == 0) {
-                res.add(start);
-            }
-            
-            if (end - start == p.length()) {
-                hmap[s.charAt(start) - 'a']++;
-                count++;
-                start++;
+
+        int[] pFreq = new int[26];
+        int[] sFreq = new int[26];
+        for (int i = 0; i < p.length(); i++) {
+            pFreq[p.charAt(i) - 'a']++;
+            sFreq[s.charAt(i) - 'a']++;
+        }
+
+        if (Arrays.equals(pFreq, sFreq)) {
+            ans.add(0);
+        }
+
+        int i = 0, j = p.length();
+        while (j < s.length()) {
+            sFreq[s.charAt(i++) - 'a']--;
+            sFreq[s.charAt(j++) - 'a']++;
+            if (Arrays.equals(sFreq, pFreq)) {
+                ans.add(i);
             }
         }
-        
-        return res;
+
+        return ans;
     }
 }
-
-
-
-
-
-// s = "gcbaebabacd", p = "abc"
-    
-//     a -> 1
-//     b -> 1
-//     c-> 1
-//     g -> 1 count = 4 , start = 1
-    
-    
-
