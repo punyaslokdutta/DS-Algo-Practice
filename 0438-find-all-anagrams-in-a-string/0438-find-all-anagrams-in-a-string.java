@@ -4,7 +4,6 @@ class Solution {
         for (char ch : p.toCharArray()) {
             hmap[ch - 'a']++;
         }
-        
         int start = 0;
         int end = 0;
         int count = p.length();
@@ -35,3 +34,17 @@ class Solution {
         return res;
     }
 }
+
+
+
+
+
+// s = "gcbaebabacd", p = "abc"
+    
+//     a -> 1
+//     b -> 1
+//     c-> 1
+//     g -> 1 count = 4 , start = 1
+    
+    
+
