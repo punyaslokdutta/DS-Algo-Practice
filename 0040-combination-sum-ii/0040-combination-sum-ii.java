@@ -1,24 +1,36 @@
-
-class Solution{
-
-public List<List<Integer>> combinationSum2(int[] candidates, int target) {
-   List<List<Integer>> list = new LinkedList<List<Integer>>();
-   Arrays.sort(candidates);
-   backtrack(list, new ArrayList<Integer>(), candidates, target, 0);
-   return list;
-}
-
-private void backtrack(List<List<Integer>> list, List<Integer> tempList, int[] cand, int remain, int start) {
-   
-   if(remain < 0) return; /** no solution */
-   else if(remain == 0) list.add(new ArrayList<>(tempList));
-   else{
-      for (int i = start; i < cand.length; i++) {
-         if(i > start && cand[i] == cand[i-1]) continue; /** skip duplicates */
-         tempList.add(cand[i]);
-         backtrack(list, tempList, cand, remain - cand[i], i+1);
-         tempList.remove(tempList.size() - 1);
-      }
-   }
-}
+class Solution {
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> subset = new ArrayList<>();
+        int sum = 0;
+        Arrays.sort(candidates);
+        helper(0,candidates,target,sum,ans,subset);
+        return ans;
+    }
+    void helper(int start,int[] candidate,int target,int sum,List<List<Integer>> ans, List<Integer> subset)
+    {
+        if(sum==target)
+        {
+            ans.add(new ArrayList(subset));
+            return;
+        }
+        
+        if(start>=candidate.length)
+            return;
+        
+        if(sum>target)
+            return;
+        
+        //include
+        sum+=candidate[start];
+        subset.add(candidate[start]);
+        helper(start+1,candidate,target,sum,ans,subset);
+        
+        //exclude
+        sum-=candidate[start];
+        subset.remove(subset.size()-1);
+        while(start+1<candidate.length && candidate[start]==candidate[start+1])
+            start++;
+        helper(start+1,candidate,target,sum,ans,subset);
+    }
 }
