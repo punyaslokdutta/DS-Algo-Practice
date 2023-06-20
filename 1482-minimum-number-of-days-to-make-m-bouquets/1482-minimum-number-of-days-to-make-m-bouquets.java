@@ -19,10 +19,10 @@ class Solution {
         {
             mid = l + (r-l)/2;
             int numBouquets = numOfBouquet(mid, bloomDay, k);
-            if(numBouquets >= m)
+            if(numBouquets >=m)
             {
                 ans = mid;
-                r = mid-1;
+               r = mid -1;
             }
             else if(numBouquets < m){
                 l = mid+1;  
@@ -39,13 +39,10 @@ class Solution {
        int bouquets = 0, flowersCollected = 0;
         for (int value : bloom) {
             if (value <= day) {
-//                If the current flower can be taken with in days then increase the flower flowersCollected.
                 flowersCollected++;
             } else {
-//                If there is a flower in between that takes more number of days then the given day, then resent the counter.
                 flowersCollected = 0;
             }
-//            If the flowersCollected is same as the required flower per bookie, then increase the bouquets count;
             if (flowersCollected == k) {
                 bouquets++;
                 flowersCollected = 0;
