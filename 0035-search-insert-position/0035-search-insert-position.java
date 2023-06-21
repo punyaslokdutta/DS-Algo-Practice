@@ -2,30 +2,21 @@
 // l, r : [, n-1]
 //ans : [0, n]
 //in BS questions, to avoid edge cases, dry run with 1, 2,3 elems
-
 class Solution {
     public int searchInsert(int[] nums, int target) {
-        int high = nums.length - 1;
-        int low = 0;
-        int mid = low + (high - low)/2;
-        if(target > nums[high])
-            return nums.length;
-        while(low<high)
-        {
-            mid = low + (high - low)/2;
-            if(nums[mid] == target)
-            {
-                return mid;
-            }
-            else if(nums[mid] > target)
-            {
-                high = mid;
-            }
-            else
-            {
-                low = mid + 1;
-            }
+        int start = 0;
+        int end = nums.length-1;
+
+        while (start <= end) {
+            int mid = start + (end-start)/2;
+            if (nums[mid] == target) return mid;
+            else if (nums[mid] > target) end = mid-1;
+            else start = mid+1;
         }
-        return high;        
+
+        return start;
     }
 }
+
+
+//start ........(mid -1).(mid).(mid+1)...........end
