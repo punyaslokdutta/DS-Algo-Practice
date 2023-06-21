@@ -1,27 +1,27 @@
 class Solution {
-    List<String> st;
-    Map<String, Integer> mp;
-    int helper(String s){
-        if(s.length() == 0 )  return 0;
+    public int minExtraChar(String s, String[] dictionary) {
+        Map<String , Integer> mp = new HashMap<>();
+        return solve(s, dictionary, mp);
+        
+    }
+    
+    private static int solve(String s , String[] words , Map<String,Integer> mp)
+    {
+        if(s.length() == 0) return 0;
         if(mp.containsKey(s)) return mp.get(s);
-        int ans =s.length() + 1;
-        int n = s.length();
-        for(String word : st)
+        int minExtraChars = s.length() + 1;
+        for(String word : words)
         {
             if(s.startsWith(word))
             {
-                ans = Math.min(ans, helper(s.substring(word.length())));
+                minExtraChars = Math.min(minExtraChars , solve(s.substring(word.length()), words, mp));
             }
+            minExtraChars = Math.min(minExtraChars, 1 + solve(s.substring(1), words , mp));
         }
-        ans = Math.min(ans, 1 + helper(s.substring(1,n)));
         
-        mp.put(s, ans);
-        return ans;
-    }
-    public int minExtraChar(String s, String[] dictionary) {
-        st = new ArrayList<>();
-        mp = new HashMap<>();
-        for(var d:dictionary) st.add(d);
-        return helper(s);
+        mp.put(s, minExtraChars);
+        return minExtraChars;
+        
+        
     }
 }
