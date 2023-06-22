@@ -7,7 +7,7 @@ class Solution {
     public int generateSubsets(int []a ,int index,  Map<Integer, Integer> fMap, int k)
     { 
         if(index == a.length) return 1;
-        int res = generateSubsets(a , index + 1, fMap,  k);
+        int res = 0;
         if(!fMap.containsKey(a[index] + k) && !fMap.containsKey(a[index] - k))
         {
             //can add this a[index]
@@ -16,6 +16,7 @@ class Solution {
             fMap.put(a[index], fMap.get(a[index]) -1);
             if(fMap.get(a[index]) == 0) fMap.remove(a[index]);
         }
+        res+=generateSubsets(a , index + 1, fMap,  k);
         return res;
     }
 }
