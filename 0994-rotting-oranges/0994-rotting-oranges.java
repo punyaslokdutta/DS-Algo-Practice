@@ -37,7 +37,6 @@ class Solution {
             int sz = q.size();
             rotten+=sz;
             if(total == rotten) return time;
-            time++;
             for(int i=0;i<sz;i++)
             {
                 Pair p = q.poll();
@@ -68,6 +67,7 @@ class Solution {
                     q.offer(adjP4);
                 }
             }
+            time++;
             
         }
         
