@@ -1,22 +1,21 @@
 class Solution {
-    boolean ans;
-    private void dfs(int node ,int destination, Map<Integer, List<Integer>> graph , Set<Integer> vis)
+    private boolean dfs(int node ,int destination, Map<Integer, List<Integer>> graph , Set<Integer> vis)
     {
         if(node == destination){
-            ans = true;
-            return;
+            return true;
         }
         vis.add(node);
         for(int adjNode : graph.get(node))
         {
             if(!vis.contains(adjNode))
             {
-                dfs(adjNode, destination, graph, vis);
+                if(dfs(adjNode, destination, graph, vis)) return true;
             }
-        } 
+        }
+        
+        return false;
     }
     public boolean validPath(int n, int[][] edges, int source, int destination) {
-        ans = false;
         Map<Integer, List<Integer>> graph = new HashMap<>();
         for(int i=0;i<n;i++){
             graph.put(i, new ArrayList<>());
@@ -29,8 +28,8 @@ class Solution {
             graph.get(v).add(u); 
         }
         Set<Integer> vis = new HashSet<>();
-        dfs(source, destination, graph, vis);
-        return ans;
+        return dfs(source, destination, graph, vis);
+        
         
     }
 }
