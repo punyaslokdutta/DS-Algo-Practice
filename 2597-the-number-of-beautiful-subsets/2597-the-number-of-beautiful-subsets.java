@@ -8,15 +8,17 @@ class Solution {
     { 
         if(index == a.length) return 1;
         int res = 0;
+        res+=generateSubsets(a , index + 1, fMap,  k);
         if(!fMap.containsKey(a[index] + k) && !fMap.containsKey(a[index] - k))
         {
-            //can add this a[index]
+            
             fMap.put(a[index], fMap.getOrDefault(a[index], 0) + 1);
             res+=generateSubsets(a, index + 1, fMap, k);
             fMap.put(a[index], fMap.get(a[index]) -1);
             if(fMap.get(a[index]) == 0) fMap.remove(a[index]);
+            
         }
-        res+=generateSubsets(a , index + 1, fMap,  k);
+        
         return res;
     }
 }
