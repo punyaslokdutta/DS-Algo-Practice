@@ -32,7 +32,7 @@ class Solution {
         }
         if(total == 0) return 0;
         int time=0;
-        while(!q.isEmpty() && rotten<total)
+        while(!q.isEmpty())
         {
             int sz = q.size();
             rotten+=sz;
