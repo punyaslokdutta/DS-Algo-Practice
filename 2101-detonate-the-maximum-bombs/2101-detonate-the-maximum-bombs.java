@@ -9,14 +9,16 @@ class Solution {
     }
 
     private int dfs(int idx, boolean[] v, int[][] bombs) {
+        if(v[idx] == true) return 0;
         int count = 1;
         v[idx] = true;
         int n = bombs.length;
         for (int i = 0; i < n; i++) {
-            if (!v[i] && inRange(bombs[idx], bombs[i])) {
+            if (inRange(bombs[idx], bombs[i])) {
                 count += dfs(i, v, bombs);
             }
         }
+        //v[idx] = false;
         return count;
     }
 
