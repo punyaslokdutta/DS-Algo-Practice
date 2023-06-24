@@ -14,7 +14,6 @@ class Solution {
         int n = bombs.length;
         for (int i = 0; i < n; i++) {
             if (!v[i] && inRange(bombs[idx], bombs[i])) {
-                v[i] = true;
                 count += dfs(i, v, bombs);
             }
         }
