@@ -1,24 +1,22 @@
 class Solution {
-    
    public int maximumDetonation(int[][] bombs) {
         int n = bombs.length, ans = 0;
         for (int i = 0; i < n; i++) {
-            ans = Math.max(ans, dfs(i, new boolean[n], bombs));
+            ans = Math.max(ans, dfs(i, new boolean[n],  bombs));
         }
         return ans;
     }
 
-    private int dfs(int idx, boolean[] v, int[][] bombs) {
-        if(v[idx] == true) return 0;
+    private int dfs(int idx , boolean[] vis,  int[][] bombs) {
+        if(vis[idx] == true) return 0;
         int count = 1;
-        v[idx] = true;
+        vis[idx] = true;
         int n = bombs.length;
         for (int i = 0; i < n; i++) {
             if (inRange(bombs[idx], bombs[i])) {
-                count += dfs(i, v, bombs);
+                count += dfs(i,vis, bombs);
             }
         }
-        //v[idx] = false;
         return count;
     }
 
@@ -27,3 +25,6 @@ class Solution {
         return dx * dx + dy * dy <= r * r;
     }
 }
+
+
+
