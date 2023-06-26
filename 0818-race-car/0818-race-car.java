@@ -12,7 +12,7 @@ class Solution {
             //st.add(f);
             if(pos == target) return moves;
             
-            if(st.contains(new int[]{pos, speed , moves})) continue;
+            //if(st.contains(new int[]{pos, speed , moves})) continue;
             q.add(new int[]{pos + speed , 2*speed , moves + 1}); //A
             if((pos + speed > target && speed >0) || (pos + speed < target && speed < 0))
             {
