@@ -9,7 +9,7 @@ class Solution {
             int pos = f[0];
             int speed = f[1];
             int moves = f[2];
-            st.add(f);
+            //st.add(f);
             if(pos == target) return moves;
             
             if(st.contains(new int[]{pos, speed , moves})) continue;
