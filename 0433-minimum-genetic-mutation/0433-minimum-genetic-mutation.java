@@ -3,7 +3,7 @@ class Solution {
         Set<String> st = new HashSet<>(Arrays.asList(bank));
         Queue<String> q = new LinkedList<>();
         if(!st.contains(endGene)) return -1;
-        char []gene = {'A', 'C', 'G', 'T'};
+        char []gene = new char[] {'A', 'C', 'G', 'T'};
         q.add(startGene);
         Set<String> vis = new HashSet<>();
         vis.add(startGene);
@@ -15,6 +15,7 @@ class Solution {
             {
                 String curr = q.poll();
                 if(curr.equals(endGene)) return ans;
+                
                 for(int i=0;i<curr.length();i++)
                 {
                     char []temp = curr.toCharArray();
