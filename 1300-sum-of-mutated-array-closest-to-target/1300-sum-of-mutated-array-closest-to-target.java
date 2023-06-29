@@ -25,7 +25,7 @@ class Solution {
         {
             int m = l + (r-l)/2;
             int currSum = getModifiedSum(m, arr);
-            if( currSum > target)
+            if( currSum >= target)
             {
                 r = m-1;
             }
