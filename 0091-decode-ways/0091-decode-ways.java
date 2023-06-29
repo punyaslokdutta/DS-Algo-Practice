@@ -1,30 +1,27 @@
 class Solution {
-    private int numDecodeHelper(String s, Map<String, Integer> map) {
-        if(s.length() == 0 ) {
-            return 1;
+    private int numWays(String s ,int index,  Map<Integer, Integer> dp)
+    {
+        if(index >= s.length() ) return 1;
+        if(s.charAt(index) == '0') return 0;
+        if(dp.containsKey(index))
+        {
+            return dp.get(index);
         }
-        
-        if(map.containsKey(s)) {
-            return map.get(s);
-        }
-        
-        char pickOne = s.charAt(0);
-        if(pickOne == '0') {
-            return 0;
-        }
-        int ans = numDecodeHelper(s.substring(1), map);
-        if(s.length() >= 2) {
-            String pickTwo = s.substring(0,2);
-            if(Integer.parseInt(pickTwo) <= 26) {
-                ans += numDecodeHelper(s.substring(2), map);
+        int ans = 0;
+        ans = numWays(s, index + 1, dp);
+        if(index + 1 < s.length())
+        {
+            if(s.charAt(index) == '1' || s.charAt(index) == '2' && s.charAt(index+1)<'7')
+            {
+                ans+= numWays(s, index + 2 , dp);
             }
         }
-        map.put(s, ans);
+        dp.put(index, ans);
         return ans;
     }
     public int numDecodings(String s) {
-        Map<String, Integer> dp = new HashMap<>();
-        return numDecodeHelper(s,dp);
+        Map<Integer, Integer> dp = new HashMap<>();
+        return numWays(s,0,  dp);
         
     }
 }
