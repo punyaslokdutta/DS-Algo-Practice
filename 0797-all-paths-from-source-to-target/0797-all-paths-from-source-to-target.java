@@ -1,30 +1,30 @@
 class Solution {
-    private List<List<Integer>> ans;
-    private void dfs(int node , int [][]graph , List<Integer>temp)
-    {
-        
-        if(node == graph.length - 1)
-        {
-            ans.add(new ArrayList<>(temp));
-            return;
-        }
-        for(int v : graph[node]) 
-        {
-            temp.add(v);
-            dfs(v, graph, temp);
-            temp.remove(temp.size() - 1);  
-        }
-        
-        
-    }
     public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
-        ans = new ArrayList<>();
-        List<Integer> temp = new ArrayList<>();
-        temp.add(0);
-        dfs(0, graph, temp);
+        Queue<List<Integer>> q= new LinkedList<>();
+        q.add(new ArrayList<>(Arrays.asList(0)));
+        List<List<Integer>> ans = new ArrayList<>();
+        while(!q.isEmpty())
+        {
+            List<Integer>f = q.poll();
+            int lastNode = f.get(f.size() - 1);
+            if(lastNode == graph.length - 1)
+            {
+                ans.add(f);
+                continue;
+            }
+            for(int v : graph[lastNode])
+            {
+                List<Integer> nP = new ArrayList<>(f);
+                nP.add(v);
+                q.add(nP);
+            }
+        }
+        
         return ans;
+        
     }
 }
 
-
-//List<Integer> currTraversalNodes
+//no cycles -> no need of visted set to prevent cycle
+//undirected -> check visited
+//directed -> check visited in curr traversal stack or color[v] == 1
