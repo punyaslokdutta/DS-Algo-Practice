@@ -1,13 +1,13 @@
 class Solution {
-    Set<Integer> vis;
-    private void dfs(int node , Map<Integer, List<Integer>> graph)
+    
+    private void dfs(int node , Map<Integer, List<Integer>> graph, Set<Integer> vis)
     {
         vis.add(node);
         for(int v : graph.get(node))
         {
             if(!vis.contains(v))
             {
-                dfs(v, graph);
+                dfs(v, graph, vis);
             }
         }
     }
@@ -15,7 +15,7 @@ class Solution {
         int edges = connections.length;
         if(edges < n - 1) return -1;
         Map<Integer, List<Integer>> graph = new HashMap<>();
-        vis = new HashSet<>(); 
+        Set<Integer>vis = new HashSet<>(); 
         for(int i=0;i<n;i++) graph.put(i , new ArrayList<>());
         for(int[]con : connections)
         {
@@ -29,7 +29,7 @@ class Solution {
         {
             if(!vis.contains(i))
             {
-                dfs(i, graph);
+                dfs(i, graph, vis);
                 numComp++;
             }
         }
