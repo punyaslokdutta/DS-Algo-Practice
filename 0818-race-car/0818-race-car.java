@@ -14,13 +14,11 @@ class Solution {
               if (position == target) {
                   return moves;
               }
-              else {
               //visited.add(new Integer[]{position, speed});
                   queue.add(new Integer[]{moves+1,position+speed,speed*2 });
                   if ((position+speed > target && speed > 0) || (position+speed < target && speed < 0)) {
 					  queue.add(new Integer[]{moves+1,position, speed > 0? -1: 1 });
                   }
-              }
           }
         return moves;
     }
