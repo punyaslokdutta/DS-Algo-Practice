@@ -35,7 +35,7 @@ class PeekingIterator implements Iterator<Integer> {
 	
 	@Override
 	public boolean hasNext() {
-        return next!=null;
+        return next!= null || it.hasNext();
 	}
 }
 
