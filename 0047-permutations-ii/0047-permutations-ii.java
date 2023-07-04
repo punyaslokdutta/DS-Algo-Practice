@@ -18,7 +18,7 @@ public class Solution {
             if (appeared.add(nums[i])) {
                 swap(nums, index, i);
                 permute(ans, nums, index+1);
-                swap(nums, index, i);
+                swap(nums, index, i); //backtrack
             }
         }
     }
