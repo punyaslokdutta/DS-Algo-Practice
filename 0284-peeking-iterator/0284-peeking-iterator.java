@@ -2,17 +2,19 @@
 // https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html
 
 class PeekingIterator implements Iterator<Integer> {
-    private Iterator<Integer> it = null;
-    private Integer next = null;
+    Iterator<Integer> it = null;
+    Integer next = null;
 	public PeekingIterator(Iterator<Integer> iterator) {
-	    // initialize any member here.
-        it = iterator;   //{1-> 2 -> 3 -> 4 -> 5}
+        it = iterator;
         if(it.hasNext()) next = it.next();
+	    // initialize any member here.
+	    
 	}
 	
     // Returns the next element in the iteration without advancing the iterator.
 	public Integer peek() {
         return next;
+        
 	}
 	
 	// hasNext() and next() should behave the same as in the Iterator interface.
@@ -27,12 +29,12 @@ class PeekingIterator implements Iterator<Integer> {
         else{
             next = null;
         }
+        
         return curr;
-	    
 	}
 	
 	@Override
 	public boolean hasNext() {
-	    return next!=null || it.hasNext();
+        return next!=null || it.hasNext();
 	}
 }
