@@ -1,28 +1,31 @@
-class Solution {
-public:
-    vector<vector<int>> ans;
-    void perm(vector<int>nums, int index)
-    {
-        if(index==nums.size())
-        {
-            ans.push_back(nums);
+public class Solution {
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        if (nums==null || nums.length==0) { return ans; }
+        permute(ans, nums, 0);
+        return ans;
+    }
+    
+    private void permute(List<List<Integer>> ans, int[] nums, int index) {
+        if (index == nums.length) { 
+            List<Integer> temp = new ArrayList<>();
+            for (int num: nums) { temp.add(num); }
+            ans.add(temp);
             return;
         }
-        for(int k=index;k<nums.size();k++)
-        {
-           if(index!=k && nums[index]==nums[k])
-               continue;
-            swap(nums[index], nums[k]);
-            perm(nums, index+1);
-            //swap(nums[index], nums[k]);
-           
+        Set<Integer> appeared = new HashSet<>();
+        for (int i=index; i<nums.length; ++i) {
+            if (appeared.add(nums[i])) {
+                swap(nums, index, i);
+                permute(ans, nums, index+1);
+                swap(nums, index, i);
+            }
         }
     }
-    vector<vector<int>> permuteUnique(vector<int>& nums) {
-        int n = nums.size();
-        sort(nums.begin(), nums.end());
-        perm(nums, 0);
-        return ans;
-        
+    
+    private void swap(int[] nums, int i, int j) {
+        int save = nums[i];
+        nums[i] = nums[j];
+        nums[j] = save;
     }
-};
+}
