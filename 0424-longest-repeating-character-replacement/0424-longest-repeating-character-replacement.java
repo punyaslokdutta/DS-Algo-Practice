@@ -11,7 +11,7 @@ class Solution {
             char ch = s.charAt(j);
             mp.put(ch, mp.getOrDefault(ch, 0) + 1);
             majorityCharCount = Math.max(majorityCharCount, mp.get(ch));
-            if(j-i+1 - majorityCharCount > k)
+            while(j-i+1 - majorityCharCount > k)
             {
                 char rm = s.charAt(i);
                 mp.put(rm , mp.get(rm) -1 );
