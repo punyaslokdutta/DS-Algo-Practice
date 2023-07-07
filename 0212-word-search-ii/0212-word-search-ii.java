@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 class Solution {
     public List<String> findWords(char[][] board, String[] words) {
     List<String> res = new ArrayList<>();
