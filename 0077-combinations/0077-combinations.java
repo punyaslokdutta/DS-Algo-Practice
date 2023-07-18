@@ -2,7 +2,7 @@ class Solution {
     private List<List<Integer>> ans;
     private int num;
     private int kk;
-    private void solve(List<Integer> curr , int index , int []arr)
+    private void solve(List<Integer> curr , int index)
     {
         if(index == num){
             if( curr.size() == kk){
@@ -12,10 +12,10 @@ class Solution {
         }
         
         
-        curr.add(arr[index]);
-        solve(curr , index + 1, arr);
+        curr.add(index + 1);
+        solve(curr , index + 1);
         curr.remove(curr.size() - 1);
-        solve(curr , index + 1, arr );
+        solve(curr , index + 1);
     }
     public List<List<Integer>> combine(int n, int k) {
         List<Integer> curr = new ArrayList<>();
@@ -25,7 +25,7 @@ class Solution {
         num = n;
         kk = k;
         ans = new ArrayList<>();
-        solve(curr, 0, arr);
+        solve(curr, 0);
         return ans;
     }
 }
