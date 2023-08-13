@@ -1,12 +1,11 @@
 class Solution {
-    private static boolean solve(int index, int[]nums , int [] dp)
+    private static Boolean solve(int index, int[]nums , Boolean [] dp)
     {
         int n = nums.length;
         if(index >= n) return true;
-        if(dp[index] == 0 ) return false;
-        else if(dp[index] == 1) return true;
+        if(dp[index]!=null) return dp[index];
         
-        boolean ans = false;
+        Boolean ans = false;
         if(index + 1 < n && nums[index] == nums[index+1])
         {
             ans |= solve(index + 2, nums , dp);
@@ -19,14 +18,12 @@ class Solution {
         {
             ans|=solve(index+3, nums, dp);
         }
-        if(ans) dp[index] = 1;
-        else dp[index] = 0;
-        return dp[index] == 1;
+        dp[index] = ans;
+        return dp[index];
     }
     public boolean validPartition(int[] nums) {
         int n = nums.length;
-        int [] dp = new int[n];
-        Arrays.fill(dp , -1);
+        Boolean [] dp = new Boolean[n];
         return solve(0, nums, dp);
     }
 }
