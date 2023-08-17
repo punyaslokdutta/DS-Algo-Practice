@@ -1,55 +1,23 @@
-class State {
-    int row;
-    int col;
-    int steps;
-    State(int row, int col, int steps) {
-        this.row = row;
-        this.col = col;
-        this.steps = steps;
-    }
-}
-
 class Solution {
-    int m;
-    int n;
-    int[][] directions = new int[][]{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
-    
+    int[] DIR = new int[]{0, 1, 0, -1, 0};
     public int[][] updateMatrix(int[][] mat) {
-        m = mat.length;
-        n = mat[0].length;
-        
-        int[][] matrix = new int[m][n];
-        boolean[][] seen = new boolean[m][n];
-        Queue<State> queue = new LinkedList<>();
-        
-        for (int row = 0; row < m; row++) {
-            for (int col = 0; col < n; col++) {
-                matrix[row][col] = mat[row][col];
-                if (mat[row][col] == 0) {
-                    queue.add(new State(row, col, 0));
-                    seen[row][col] = true;
-                }
+        int m = mat.length, n = mat[0].length; // The distance of cells is up to (M+N)
+        Queue<int[]> q = new ArrayDeque<>();
+        for (int r = 0; r < m; ++r)
+            for (int c = 0; c < n; ++c)
+                if (mat[r][c] == 0) q.offer(new int[]{r, c});
+                else mat[r][c] = -1; // Marked as not processed yet!
+
+        while (!q.isEmpty()) {
+            int[] curr = q.poll();
+            int r = curr[0], c = curr[1];
+            for (int i = 0; i < 4; ++i) {
+                int nr = r + DIR[i], nc = c + DIR[i+1];
+                if (nr < 0 || nr == m || nc < 0 || nc == n || mat[nr][nc] != -1) continue;
+                mat[nr][nc] = mat[r][c] + 1;
+                q.offer(new int[]{nr, nc});
             }
         }
-        
-        while (!queue.isEmpty()) {
-            State state = queue.remove();
-            int row = state.row, col = state.col, steps = state.steps;
-            
-            for (int[] direction: directions) {
-                int nextRow = row + direction[0], nextCol = col + direction[1];
-                if (valid(nextRow, nextCol) && !seen[nextRow][nextCol]) {
-                    seen[nextRow][nextCol] = true;
-                    queue.add(new State(nextRow, nextCol, steps + 1));
-                    matrix[nextRow][nextCol] = steps + 1;
-                }
-            }
-        }
-        
-        return matrix;
-    }
-    
-    public boolean valid(int row, int col) {
-        return 0 <= row && row < m && 0 <= col && col < n;
+        return mat;
     }
 }
