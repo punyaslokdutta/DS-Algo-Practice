@@ -1,52 +1,49 @@
-class Solution {
-    private void dfs(int node , Map<Integer, List<Integer>> graph , Map<Integer, Integer> compMap, int numComps)
-    {
-        compMap.put(node , numComps);
-        for(int adj : graph.get(node))
-        {
-            if(!compMap.containsKey(adj)) dfs(adj, graph , compMap , numComps);
-        }
-    }
+public class Solution {
     public int maximalNetworkRank(int n, int[][] roads) {
-        Map<Integer, List<Integer>> graph = new HashMap<>();
-        Map<Integer, Integer> compMap = new HashMap<>(); //Node , Comp
-        for(int i=0;i<n;i++) graph.put(i, new ArrayList<>());
-        for(int[]road : roads)
-        {
-            int u = road[0];
-            int v = road[1];
-            graph.get(u).add(v);
-            graph.get(v).add(u);
-        }
-        int numComps = 1;
-        for(int i=0;i<n;i++)
-        {
-            if(!compMap.containsKey(i))
-            {
-                dfs(i, graph, compMap, numComps);
-                numComps++;
-            }
-        }
-        int maxNetwork = 0;
-        for(int i=0;i<n;i++)
-        {
-            for(int j=0;j<n ;j++)
-            {
-                if(i!=j)
-                {
-                    int networkRank = 0;
-                    if(!graph.get(i).contains(j) || compMap.get(i)!= compMap.get(j) )
-                        networkRank = graph.get(i).size() + graph.get(j).size();
-                    else
-                        networkRank = graph.get(i).size() + graph.get(j).size() - 1;
-                    maxNetwork = Math.max(maxNetwork, networkRank);
-                }
-            }
+        int[] degrees = new int[n];
+        for (int[] road : roads) {
+            degrees[road[0]]++;
+            degrees[road[1]]++;
         }
         
-        return maxNetwork;
+        Set<Integer> uniqueDegrees = new HashSet<>();
+        for (int degree : degrees) {
+            uniqueDegrees.add(degree);
+        }
+        
+        List<Integer> sortedDegrees = new ArrayList<>(uniqueDegrees);
+        Collections.sort(sortedDegrees, Collections.reverseOrder());
+
+        int maxDeg = sortedDegrees.get(0);
+        int secondMaxDeg = sortedDegrees.size() > 1 ? sortedDegrees.get(1) : 0;
+
+        int maxCount = 0;
+        for (int degree : degrees) {
+            if (degree == maxDeg) maxCount++;
+        }
+
+        int secondMaxCount = 0;
+        for (int degree : degrees) {
+            if (degree == secondMaxDeg) secondMaxCount++;
+        }
+
+        if (maxCount > 1) {
+            int directlyConnected = 0;
+            for (int[] road : roads) {
+                if (degrees[road[0]] == maxDeg && degrees[road[1]] == maxDeg)
+                    directlyConnected++;
+            }
+            int possibleConnections = maxCount * (maxCount - 1) / 2;
+            return possibleConnections == directlyConnected ? 2 * maxDeg - 1 : 2 * maxDeg;
+        }
+
+        int directConnectionsToSecond = 0;
+        for (int[] road : roads) {
+            if ((degrees[road[0]] == maxDeg && degrees[road[1]] == secondMaxDeg) ||
+                (degrees[road[0]] == secondMaxDeg && degrees[road[1]] == maxDeg))
+                directConnectionsToSecond++;
+        }
+
+        return secondMaxCount == directConnectionsToSecond ? maxDeg + secondMaxDeg - 1 : maxDeg + secondMaxDeg;
     }
 }
-
-// graph
-// nC2 pair -> 50*99 -> check num of roads
