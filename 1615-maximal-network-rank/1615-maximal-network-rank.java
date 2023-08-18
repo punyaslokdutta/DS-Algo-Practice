@@ -30,17 +30,15 @@ class Solution {
         int maxNetwork = 0;
         for(int i=0;i<n;i++)
         {
-            for(int j=0;j<n ;j++)
+            for(int j=i+1;j<n ;j++)
             {
-                if(i!=j)
-                {
+                
                     int networkRank = 0;
                     if(!graph.get(i).contains(j) || compMap.get(i)!= compMap.get(j) )
                         networkRank = graph.get(i).size() + graph.get(j).size();
                     else
                         networkRank = graph.get(i).size() + graph.get(j).size() - 1;
                     maxNetwork = Math.max(maxNetwork, networkRank);
-                }
             }
         }
         
