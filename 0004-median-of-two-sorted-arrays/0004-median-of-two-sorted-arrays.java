@@ -1,31 +1,38 @@
 class Solution {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-    int index1 = 0;
-    int index2 = 0;
-    int med1 = 0;
-    int med2 = 0;
-    for (int i=0; i<=(nums1.length+nums2.length)/2; i++) {
-        med1 = med2;
-        if (index1 == nums1.length) {
-            med2 = nums2[index2];
-            index2++;
-        } else if (index2 == nums2.length) {
-            med2 = nums1[index1];
-            index1++;
-        } else if (nums1[index1] < nums2[index2] ) {
-            med2 = nums1[index1];
-            index1++;
-        }  else {
-            med2 = nums2[index2];
-            index2++;
+        if (nums1.length > nums2.length) {
+            return findMedianSortedArrays(nums2, nums1);
         }
-    }
 
-    // the median is the average of two numbers
-    if ((nums1.length+nums2.length)%2 == 0) {
-        return (float)(med1+med2)/2;
-    }
+        int m = nums1.length;
+        int n = nums2.length;
 
-    return med2;
-}
+        int low = 0;
+        int high = m;
+
+        while (low <= high) {
+            int partitionX = (low + high) / 2;
+            int partitionY = (m + n + 1) / 2 - partitionX;
+
+            int maxX = (partitionX == 0) ? Integer.MIN_VALUE : nums1[partitionX - 1];
+            int maxY = (partitionY == 0) ? Integer.MIN_VALUE : nums2[partitionY - 1];
+
+            int minX = (partitionX == m) ? Integer.MAX_VALUE : nums1[partitionX];
+            int minY = (partitionY == n) ? Integer.MAX_VALUE : nums2[partitionY];
+
+            if (maxX <= minY && maxY <= minX) {
+                if ((m + n) % 2 == 0) {
+                    return (double) (Math.max(maxX, maxY) + Math.min(minX, minY)) / 2;
+                } else {
+                    return (double) Math.max(maxX, maxY);
+                }
+            } else if (maxX > minY) {
+                high = partitionX - 1;
+            } else {
+                low = partitionX + 1;
+            }
+        }
+
+        throw new IllegalArgumentException("Input arrays are not sorted.");
+    }
 }
