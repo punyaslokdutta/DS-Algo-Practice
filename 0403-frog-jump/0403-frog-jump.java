@@ -9,21 +9,21 @@ class Solution {
         boolean path1 = false;
         boolean path2 = false;
         boolean path3 = false;
-        
+        boolean temp = false;
         if(mp.containsKey(currPos + lastJumpLen - 1))
         {
-            path1 = solve(stones , mp, currPos + lastJumpLen -1, lastJumpLen -1, dp);
+            temp = temp || solve(stones , mp, currPos + lastJumpLen -1, lastJumpLen -1, dp);
         }
         if(mp.containsKey(currPos + lastJumpLen))
         {
-            path2 = solve(stones , mp, currPos + lastJumpLen, lastJumpLen, dp);
+            temp = temp || solve(stones , mp, currPos + lastJumpLen, lastJumpLen, dp);
         }
         if(mp.containsKey(currPos + lastJumpLen + 1))
         {
-            path3 = solve(stones , mp, currPos + lastJumpLen + 1, lastJumpLen + 1 , dp);
+            temp = temp || solve(stones , mp, currPos + lastJumpLen + 1, lastJumpLen + 1 , dp);
         }
         
-        int  ans = (path1 || path2 || path3)? 1: 0;
+        int  ans = temp? 1: 0;
         dp[mp.get(currPos)][lastJumpLen] = ans;
         return ans == 1 ;
         
