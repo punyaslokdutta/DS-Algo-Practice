@@ -6,9 +6,9 @@ class Solution {
         int ans = 0;
         if(s.charAt(l) == s.charAt(r))
         {
-            return solve(s, l+1 , r-1 , dp);
+            return dp[l][r] = solve(s, l+1 , r-1 , dp);
         }
-        return dp[l][r] = Math.min(1+solve(s, l, r-1, dp), 1+solve(s, l+1, r , dp));
+        return dp[l][r] = 1 + Math.min(solve(s, l, r-1, dp),solve(s, l+1, r , dp));
     }
     public int minInsertions(String s) {
         int n = s.length();
