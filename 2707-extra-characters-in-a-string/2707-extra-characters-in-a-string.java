@@ -16,9 +16,9 @@ class Solution {
             {
                 minExtraChars = Math.min(minExtraChars , solve(s.substring(word.length()), words, mp));
             }
-            minExtraChars = Math.min(minExtraChars, 1 + solve(s.substring(1), words , mp));
+            
         }
-        
+        minExtraChars = Math.min(minExtraChars, 1 + solve(s.substring(1), words , mp));
         mp.put(s, minExtraChars);
         return minExtraChars;
         
