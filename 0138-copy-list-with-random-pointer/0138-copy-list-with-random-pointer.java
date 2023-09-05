@@ -14,17 +14,20 @@ class Node {
 */
 
 class Solution {
-    private Map<Node, Node> mp = new HashMap<>();
+    Map<Node, Node> mp = new HashMap<>();
     public Node copyRandomList(Node head) {
-        if(head == null)
-            return null;
-        if(mp.containsKey(head))
-            return mp.get(head);
         
-        Node newNode = new Node(head.val);
-        mp.put(head, newNode);
-        newNode.next = copyRandomList(head.next);
-        newNode.random = copyRandomList(head.random);
-        return newNode;
+        if(head == null) return null;
+        if(mp.containsKey(head)) return mp.get(head);
+        Node curr = new Node(head.val);
+        mp.put(head, curr);
+        curr.next = copyRandomList(head.next);
+        curr.random = copyRandomList(head.random);
+        return curr;
     }
 }
+
+
+
+// a->b->c
+//  d->e->f
