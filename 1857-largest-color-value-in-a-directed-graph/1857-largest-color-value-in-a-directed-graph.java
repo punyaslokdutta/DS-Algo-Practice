@@ -25,11 +25,11 @@ class Solution {
             }
         }
         
-        
+        int count = 0;
         while(!q.isEmpty())
         {
-            --n;
             int curr = q.poll();
+            count++;
             if(graph.get(curr).size() == 0)
             {
                 ans = Math.max(ans, Arrays.stream(memo[curr]).max().getAsInt());
@@ -48,7 +48,7 @@ class Solution {
             }
         }
         
-        return (n == 0) ? ans : -1;
+        return (count == n) ? ans : -1;
         
     }
 }
