@@ -3,7 +3,7 @@
  * @return {Promise<any>}
  */
 var promiseAll = async function(functions) {
-    return  new Promise((resolve, reject) => {
+    return await new Promise((resolve, reject) => {
         let arr = Array(functions.length);
         let n = functions.length;
         let count = 0;
