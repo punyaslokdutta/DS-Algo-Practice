@@ -20,16 +20,11 @@
 
 
 var timeLimit = function(fn, t) {
-	return async function(...args) {
-        const originalFnPromise = fn(...args);
-
-        const timeoutPromise = new Promise((_, reject) => {
-            setTimeout(() => {
-                reject('Time Limit Exceeded')
-            }, t);
-        })
-
-        return Promise.race([originalFnPromise, timeoutPromise]);
+    return async function(...args) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => reject("Time Limit Exceeded"), t);
+            fn(...args).then(resolve, reject);
+        });
     }
 };
 
