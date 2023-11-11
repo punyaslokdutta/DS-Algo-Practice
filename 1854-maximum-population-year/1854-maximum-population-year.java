@@ -8,7 +8,7 @@ class Solution {
         }
         int maxY = 1950;
         int pop = y[1950];
-        for(int i=1;i<y.length;i++){
+        for(int i=1900;i<y.length;i++){
             y[i]+=y[i-1];
             if(y[i] > pop){
                 pop = y[i];
