@@ -1,19 +1,26 @@
 class Solution {
-    public int maxFrequency(int[] A, int k) {
-        int res = 1, i = 0, j;
-        long sum = 0;
-        Arrays.sort(A);
-        for (j = 0; j < A.length; ++j) {
-            sum += A[j];
-            while (sum + k < (long)A[j] * (j - i + 1)) {
-                sum -= A[i];
-                i += 1;
+    public int maxFrequency(int[] nums, int k) {
+        Arrays.sort(nums);
+        int l = 0;
+        int n = nums.length;
+        long currSum = 0;
+        int ans = 1;
+        for(int r=0;r<n;r++){
+            currSum+=nums[r];
+            while(currSum + k < (long)nums[r]*(r- l+1)){
+                currSum -= nums[l];
+                l++;
             }
-            res = Math.max(res, j - i + 1);
+            ans = Math.max(ans, r-l+1);
         }
-        return res;
+        
+        return ans;
+        
     }
 }
+
+
+
 // max length of sliding windows where you can distribute 1's to all elems
 // = max freq of the elems after operations
 
