@@ -28,10 +28,9 @@ class Solution {
         else if(root.val == y){
             parY = par;
             depthY = depth;
-        }else{
+        }
             getDepthAndParent(root.left, x, y, depth +1, root);
             getDepthAndParent(root.right, x, y, depth +1, root);
-        }
         
     }
     public boolean isCousins(TreeNode root, int x, int y) {
