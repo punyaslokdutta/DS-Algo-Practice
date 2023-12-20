@@ -35,9 +35,6 @@ public:
                 if(tmp->right)
                     q.push(tmp->right);
             }
-          
-            if(f1&&f2)
-                return true;
         }
         
         return false;
