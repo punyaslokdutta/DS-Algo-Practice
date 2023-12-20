@@ -24,7 +24,7 @@ public:
                 //if values found
                 if(tmp->val==x) f1=true;
                 if(tmp->val==y) f2=true;
-                
+                if(f1 == true && f2 == true) return true;
                 //checking if parent is same
                 if(tmp->left && tmp->right){
                 if((tmp->left->val==x && tmp->right->val==y)|| (tmp->left->val==y && tmp->right->val==x))
