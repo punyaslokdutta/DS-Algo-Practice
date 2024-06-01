@@ -11,13 +11,13 @@ class MedianFinder {
     public void addNum(int num) {
         if(even)
         {
-            largeHeap.offer(num);
-            smallHeap.offer(largeHeap.poll());
+            smallHeap.offer(num);
+            largeHeap.offer(smallHeap.poll());
         }
         else
         {
-            smallHeap.offer(num);
-            largeHeap.offer(smallHeap.poll());
+            largeHeap.offer(num);
+            smallHeap.offer(largeHeap.poll());
         }
         even =!even;
     }
@@ -28,7 +28,7 @@ class MedianFinder {
             return (largeHeap.peek() + smallHeap.peek())/2.00; 
         }
         else
-            return smallHeap.peek();
+            return largeHeap.peek();
     }
 }
 
