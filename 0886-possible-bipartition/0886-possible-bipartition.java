@@ -5,19 +5,7 @@ class Solution {
     boolean dfs(int node, int colorVal)
     {
         color[node] = colorVal;
-        for(int v: graph.get(node))
-        {
-            if(color[v] == 0)
-            {
-                
-                if(!dfs(v, -colorVal)) return false;
-            }
-            else if(color[v]!=0 && (color[v] == color[node]))
-            {
-                return false;
-            }
-        }
-        return true;
+        return graph.get(node).stream().allMatch(v -> color[v] == 0 ? dfs(v, -colorVal) : color[v] != color[node]);
     }
     public boolean possibleBipartition(int n, int[][] dislikes) {
         graph = new HashMap<>();
@@ -43,7 +31,6 @@ class Solution {
                 if(!dfs(i, 1)) return false;
             }
         }
-        
         
         return true;
         
